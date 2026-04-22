@@ -1,9 +1,9 @@
 :root {
-  font-family: Aptos, 'Segoe UI Variable Text', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1f242a;
-  background: #f3eee6;
+  color: #16231d;
+  background: #eaf0e8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,8 +18,10 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 220px),
-    #f3eee6;
+    linear-gradient(90deg, rgba(27, 52, 39, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(27, 52, 39, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, #dbe5dc 0, #eaf0e8 220px, #e4ece3 100%);
+  background-size: 36px 36px, 36px 36px, auto;
 }
 
 button,
@@ -30,9 +32,9 @@ textarea {
 }
 
 #root {
-  width: min(1360px, calc(100% - 28px));
+  width: min(1440px, calc(100% - 30px));
   margin: 0 auto;
-  padding: 22px 0 36px;
+  padding: 24px 0 40px;
 }
 
 a {
