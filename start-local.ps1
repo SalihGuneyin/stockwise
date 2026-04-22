@@ -44,6 +44,22 @@ function Start-BackgroundProcess {
     Start-Process powershell -ArgumentList '-NoProfile', '-Command', $script -PassThru | Out-Null
 }
 
+function Wait-ForPort {
+    param(
+        [int]$Port,
+        [int]$TimeoutSeconds = 20
+    )
+
+    for ($attempt = 0; $attempt -lt $TimeoutSeconds; $attempt++) {
+        Start-Sleep -Seconds 1
+        if (Get-PortListener -Port $Port) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
 $backendListener = Get-PortListener -Port 8080
 if ($backendListener) {
     $backendCommandLine = Get-ProcessCommandLine -ProcessId $backendListener.OwningProcess
@@ -61,6 +77,7 @@ else {
         -LogFile (Join-Path $logsDirectory 'backend.log')
 
     Write-Output 'Starting backend on http://localhost:8080'
+    [void](Wait-ForPort -Port 8080)
 }
 
 $frontendListener = Get-PortListener -Port 5173
@@ -82,5 +99,5 @@ else {
     Write-Output 'Starting frontend on http://127.0.0.1:5173'
 }
 
-Write-Output 'Give the services 5-10 seconds to finish booting, then open http://127.0.0.1:5173'
+Write-Output 'If the page is not ready immediately, wait a few more seconds and refresh http://127.0.0.1:5173'
 
