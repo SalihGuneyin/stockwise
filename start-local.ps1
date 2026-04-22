@@ -57,7 +57,7 @@ if ($backendListener) {
 else {
     Start-BackgroundProcess `
         -WorkingDirectory (Join-Path $projectRoot 'backend') `
-        -Command '.\mvnw.cmd spring-boot:run' `
+        -Command '.\mvnw.cmd clean spring-boot:run' `
         -LogFile (Join-Path $logsDirectory 'backend.log')
 
     Write-Output 'Starting backend on http://localhost:8080'
